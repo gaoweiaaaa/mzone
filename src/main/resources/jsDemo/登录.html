@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<link rel="Shortcut Icon" href="https://img.58cdn.com.cn/n/tuan/v3/favicon.ico" type="image/x-icon">-->
+    <title>用户登录-mzone</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function cut() {
+            $("#userPwdLogin").toggle();
+            $("#scanLoginBox").toggle();
+            $("#pwdLogin").toggle();
+            $("#scanCode").toggle();
+            $("#loginBoxTitle").toggle();
+            /* if( $("#scanLoginBox").is(':visible')){
+
+             }*/
+        }
+
+        function sheep1() {
+
+            $("#lisheep1").attr("class", "active");
+            $("#lisheep2").attr("class", "");
+            $("#userPwdLogin").show();
+            $("#mobileCodeLogin").hide();
+            /* $("#userPwdLogin").attr("class","userpwd-login");
+             $("#mobileCodeLogin").attr("class","mobilecode-login hide");*/
+        }
+
+        function sheep2() {
+
+            $("#lisheep1").attr("class", "");
+            $("#lisheep2").attr("class", "active");
+            $("#userPwdLogin").hide();
+            $("#mobileCodeLogin").show();
+            /* $("#userPwdLogin").attr("class","userpwd-login hide");
+             $("#mobileCodeLogin").attr("class","mobilecode-login");*/
+        }
+
+        $(function () {
+            //手机动态登录输入手机号时候触发的
+            $("#loginMobile").on("input", function (e) {
+                //获取input输入的值（填写的手机号）
+                var text = e.delegateTarget.value;
+                if (text.length == 11) {
+                    //如果是11位数字，则变成可点击的按钮
+                    $("#loginMobilecodeSendBtn").attr("class", "getcode btnAbleSend");
+                } else {
+                    //否则不按钮变
+                    $("#loginMobilecodeSendBtn").attr("class", "getcode");
+                }
+            });
+        });
+        //当点击 获取动态码的时候，会倒数60s
+        $(function () {
+            $("#loginMobilecodeSendBtn").on("click", function () {
+                if ($("#loginMobilecodeSendBtn").attr("class") == "getcode btnAbleSend") {
+                    var s = 60;
+                    $("#loginMobilecodeSendBtn").attr("class", "getcode");
+                    var time = setInterval(function () {
+                        if (s == 0) {
+                            clearInterval(time);
+                        }
+                        $("#loginMobilecodeSendBtn").val(s + "s重新发送");
+                        s--;
+                    }, 1000);
+                    if (s == 0) {
+                        $("#loginMobilecodeSendBtn").val("重新发送");
+                        alert("久等了，此功能尚未上线");
+                    }
+                }
+            });
+        });
+
+
+    </script>
+    <link rel="stylesheet" href="login/pclogin_v20171123144136.css">
+    <style id="tsbrowser_video_independent_player_style" type="text/css">
+        [tsbrowser_force_max_size] {
+            width: 100% !important;
+            height: 100% !important;
+            left: 0px !important;
+            top: 0px !important;
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+
+        [tsbrowser_force_fixed] {
+            position: fixed !important;
+            z-index: 9999 !important;
+            background: black !important;
+        }
+
+        [tsbrowser_force_hidden] {
+            opacity: 0 !important;
+            z-index: 0 !important;
+        }
+
+        [tsbrowser_hide_scrollbar] {
+            overflow: hidden !important;
+        }
+    </style>
+</head>
+<body>
+<img src="login/reg-bg.png" alt="" width="100%" height="100%" class="bg-img" style=";">
+<div id="overlay"></div>
+<input type="hidden" name="source" id="source" value="pc-login">
+<input type="hidden" name="path" id="path" value="">
+<div id="loginContent">
+    <div id="outregBox">
+        <div id="backtoindex">
+            <!--首頁地址-->
+            <a href="http://www.baidu.com/"<!--onclick="clickLog(&quot;from=PC_login_fh&quot;);"-->>返回首页</a>
+        </div>
+        <div id="goReg">
+            没有账户？<a href="xxxxx"<!--onclick="clickLog(&quot;from=PC_login_zc&quot;);"-->>去注册</a>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="switch-type">
+            <div onclick="cut()" class="scancode hide" id="scanCode">
+                <i>扫码登录</i>
+                <a href="javascript:;"></a>
+            </div>
+            <div onclick="cut()" class="pwdlogin" id="pwdLogin">
+                <i>密码登录</i>
+                <a href="javascript:;"></a>
+            </div>
+        </div>
+
+        <div id="loginBox" class="loginBox ">
+            <ul class="clear login-box-title hide" id="loginBoxTitle">
+                <li class="active" onclick="sheep1();" id="lisheep1">
+                    <a href="javascript:;">账户密码登录</a>
+                </li>
+                <li onclick="sheep2();" id="lisheep2">
+                    <a href="javascript:;">手机动态码登录</a>
+                </li>
+                <input type="hidden" value="0" id="selectValue">
+            </ul>
+            <div class="login-content" id="loginWrap">
+                <div id="userPwdLogin" class="userpwd-login hide">
+                    <form name="submitForm_new" method="post" action="https://passport.58.com/login/pc/dologin"
+                          id="submitForm_new" target="formSubmitFrame_new">
+                        <input type="hidden" name="source" id="sourceUser" value="passport"><input type="hidden"
+                                                                                                   name="password"
+                                                                                                   id="p1User">
+                        <input type="hidden" name="timesign" id="timesignUser"><input type="hidden" name="isremember"
+                                                                                      id="isrememberUser" value="false">
+                        <input type="hidden" name="callback" value="successFun"><input type="hidden" id="yzmstateUser"
+                                                                                       name="yzmstate" value="">
+                        <input type="hidden" id="fingerprint" name="fingerprint"
+                               value="55E895F53B540BD1C6D5E3BDE56AB70AA3CC55A121139B14_011">
+                        <input type="hidden" id="path_user" name="path"
+                               value="https://yinchuan.58.com/?utm_source=market&amp;pts=1553410901480">
+                        <input type="hidden" id="finger2" name="finger2" value="">
+                        <ul id="userlogin_ul" class="formInput">
+                            <li class="usernameliUser">
+                                <span class="logpic_new" style="display: none;">用户名</span>
+                                <input type="text" value="" id="usernameUser" autocomplete="off" name="username"
+                                       size="20" class="passport-login-input username_new inputNull" maxlength=""
+                                       placeholder="手机号/账户名/邮箱">
+                                <span id="usernameTip" class="wrong1"></span>
+                            </li>
+                            <!--密码-->
+                            <li class="passwordliUser">
+                                <span class="logpic_new" style="display: none;">密码</span>
+                                <input class="passport-login-input password_new inputNull" type="text"
+                                       autocomplete="off" name=""
+                                       id="passwordUserText" size="20" maxlength="16" placeholder="密码"
+                                       style="display: inline-block;">
+                                <input class="passport-login-input password_new" type="password" autocomplete="off"
+                                       name="" id="passwordUser"
+                                       size="20" maxlength="16" placeholder="密码" style="display: none;">
+                                <span id="passwordTip" class="wrong1">
+
+                                    </span>
+                            </li>
+                            <!--图片验证码-->
+                            <li class="validcodeliUser" id="validcodeliUser" style="display:none">
+                                    <span class="logpic_new" style="display: none;">
+                                    验证码
+                                    </span>
+                                <input type="text" name="validcode"
+                                       class="validateCode_new passport-login-input account"
+                                       id="validateCodeUser" placeholder="图片验证码">
+                                <input type="hidden" name="vcodekey" class="vcodekey_new" id="vcodekeyUser"
+                                       autocomplete="off" value="">
+                                <img id="vcodeImg" name="vcodeImg" style="cursor: pointer; height:32px;"
+                                     src="https://kID=1">
+                                <span id="validcodeTip" class="wrong1">
+
+                                    </span>
+                            </li>
+                            <li class="commitcode_new">
+                                <a href="https://passport.58.com/forgetpassword" class="passwordonclick="
+                                   onclick="clickLog(&quot;from=PC_login_zm_wjmm&quot;);">忘记密码</a>
+                                <input type="checkbox" id="isremember_id_new">
+                                <span>下次自动登录</span>
+                            </li>
+                            <li class="submit_new">
+                                <input type="submit" id="btnSubmitUser" class="submit" name="btnSubmit" value="登录"
+                                       accesskey="l">
+                                <div class="xieyi"
+                                     style="text-align:center;margin-top: 10px;color: #999;font-size: 14px;">
+                                    <!--<p> 登录即同意<a target="_blank" style="color:#ff552e" href="https://about.58.com/home/announcement.html">《58同城使用协议》</a>
+                                        &amp;<a target="_blank" style="color:#ff552e" href="https://about.58.com/395.html">《隐私权条款》</a>
+                                    </p>-->
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                    <input type="hidden" id="rsaExponent" name="rsaExponent" value="010001">
+                    <input type="hidden" id="rsaModulus" name="rsaModulus" value="0081649a8977cde23659f">
+                    <input type="hidden" id="isvalidcode" name="" value="false">
+                    <input type="hidden" id="password_value" name="password_value" value="">
+                    <input type="hidden" id="callback_others" name="callback_others" value="usernameLoginSucc">
+                    <iframe id="formSubmitFrame_new" name="formSubmitFrame_new" src="login/submit.html"
+                            style="visibility: hidden; height: 0px; width: 0px;">
+
+                    </iframe>
+                </div>
+                <div id="mobileCodeLogin" class="mobilecode-login hide">
+                    <input type="hidden" name="token" id="tokenMobile" value="_Ks8OgzR_2LdwirpgJaK67XTu7xsteP6">
+                    <input type="hidden" name="tokencode" id="tokencodeMobile" value=" ">
+                    <input type="hidden" name="codetype" id="codetypeMobile" value="0">
+                    <input type="hidden" name="voicetype" id="voicetypeMobile" value="">
+                    <input type="hidden" name="rsaExponent" id="rsaExponentMobile" value="010001">
+                    <input type="hidden" name="rsaModulus" id="rsaModulusMobile"
+                           value="008baf14121377dc67b1c5d36b7bc752140db74cb69f">
+                    <input type="hidden" name="totalTime" id="totalTimeMobile" value="60">
+                    <input type="hidden" name="remainTime" id="remainTimeMobile" value="0">
+                    <input type="hidden" name="vcodekey" id="vcodekeyMobile" value="">
+                    <input type="hidden" name="successFucntion" id="successFunctionMobile" value="mobileLoginSucc">
+                    <ul class="formInput">
+                        <li class="mobileLoginLi mobilenumberLi">
+                            <input type="text" id="loginMobile" size="20" value=""
+                                   class="passport-login-input inputNull" maxlength="11" name="" placeholder="手机号">
+                            <input type="button" class="getcode" id="loginMobilecodeSendBtn" value="获取动态码">
+                            <span id="mobileLoginTip" class="wrong1">
+                            </span>
+                        </li>
+                        <li class="mobileLoginLi mobilecodeLi">
+                            <input type="text" size="20" value="" class="passport-login-input inputNull"
+                                   id="loginMobilecode" maxlength="6" name="" placeholder="动态码">
+                            <span id="mobileCodeTip" class="wrong1"></span>
+                            <span id="loginVoicecodeTip" class="loginVoicecodeTip" style="display:none">
+                                <span> 验证码收不到?</span>
+                                <input type="button" id="loginVoicecodeBtn" class="loginVoicecodeBtn" value="使用语音验证">
+                                </span>
+                        </li>
+                        <li class="commitcode_new">
+                            <input type="checkbox" id="isremember_id_new_mobile">
+                            <span>下次自动登录</span>
+                        </li>
+                        <li class="mobileLoginLi mobileBtnLi">
+                            <input type="button" value="登录" class="submit" id="loginMobileButton">
+                            <div class="xieyi" style="text-align:center;margin-top: 10px;color: #999;font-size: 14px;">
+                                <p>
+                                    登录即同意
+                                    <a target="_blank" style="color:#ff552e"
+                                       href="https://about.58.com/home/announcement.html">《58同城使用协议》</a>
+                                    <a target="_blank" style="color:#ff552e" href="https://about.58.com/395.html">《隐私权条款》</a>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div id="loginValidcodeBox" class="loginValidcodeBox" style="display: none">
+                        <div id="loginValidcodeTipTextBox">
+                            <span id="loginValidcodeTipText" class="loginValidcodeTipText loginTipText">请输入图片验证码</span>
+                        </div>
+                        <div id="loginValidcodeInputBox" class="loginValidcodeInputBox">
+                            <input type="text" placeholder="图片验证码" id="loginValidcode" class="loginValidcode loginInput"
+                                   maxlength="11" autocomplete="off">
+                            <img id="loginValidImg" class="" src="0-01">
+                        </div>
+                        <div id="loginValidcodeBtnbox" class="loginValidcodeBtnbox">
+                            <input type="button" value="确定" id="loginValidcodeImgBtn" class="loginValidcodeBtn"
+                                   autocomplete="off">
+                        </div>
+                        <div id="loginVoiceValidcodeBtnbox" class="loginValidcodeBtnbox" style="display: none">
+                            <input type="button" value="确定" id="loginVoiceValidcodeImgBtn" class="loginValidcodeBtn"
+                                   autocomplete="off">
+                        </div>
+                        <div id="loginValidcodeClose" class="loginValidcodeClose">
+
+                        </div>
+                    </div>
+                    <div id="loginValidcodeBg" class="loginValidcodeBg" style="display: none">
+
+                    </div>
+                </div>
+                <div id="scanLoginBox">
+                    <p id="scanLoginTitle" class="scanLoginTitle">1秒即登录，方便又安全</p>
+                    <div id="scanLogin" class="scan-login">
+                        <dl id="qrcodeWrap">
+                            <dt>
+                                <input type="hidden" id="qrcode_successFunction" value="qrCodeLoginSucc">
+                                <input type="hidden" value="_Ks8OgzR_2LdwirpgJaK67XTu7xsteP6" id="qrcode_token">
+                                <div class="erqceodeimg" style="display: block">
+                                    <div class="erqcodeimgwrap" style="display: block;">
+                                        <img class="erqcode-img" id="scanimg" src="login/img" alt="" width="120"
+                                             height="120">
+                                        <div class="erqcodefailbg" id="erqcodeFailbg" style="display: none">
+
+                                        </div>
+                                        <div class="erqcodefail" id="erqcodeFail" style="display: none">
+                                            <p class="erqcodefail-info">二维码失效</p>
+                                            <p class="erqcode-refresh">刷新</p>
+                                        </div>
+                                    </div>
+                                    <div class="scanhover" style="display: none;" id="scanHover">
+                                        <div class="scanhoverimgwrap">
+                                            <img class="erqcode-img" id="scanimg2" src="login/img" alt="">
+                                        </div>
+                                        <div class="scan-img" id="scan-img">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="scansuc" style="display: none;" id="scanSuc">
+                                    <div class="scansucbg" id="scansucbg">
+
+                                    </div>
+                                    <div class="scansuctips">
+                                        <p class="fsz1666">扫描成功！</p>
+                                        <p class="fsz1433">请在手机上确认登录</p>
+                                    </div>
+                                </div>
+                                <div class="scanfail" style="display: none;" id="scanFail">
+                                    <div class="scanfailimgbox" id="scanfailimgbox">
+
+                                    </div>
+                                    <div class="scanfailtips">
+                                        本次登录失败，
+                                        <span id="erqcode-tryagain">请重试</span>
+                                    </div>
+                                </div>
+                            </dt>
+                            <dd class="scanopenapptip" id="scanopenapptip">
+                                <!--  58扫码登录，同步账户信息 | 下载-->
+
+                                <a onclick="alert('正在开发中')"
+                                   target="_blank">mzoneAPP</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div id="thirdLogin" class="third-login clear hide">
+                <a onclick="clickLog(&quot;from=PC_login_dsf_qqdj&quot;);"
+                   href="https:ssport" class="qq-login">
+                    <i></i>
+                    <span>QQ登录</span>
+                </a>
+                <a href="javascript:;" onclick="clickLog(&quot;from=PC_login_dsf_wxdj&quot;);" class="wx-login">
+                    <i>
+
+                    </i>
+                    <span>微信登录</span>
+                </a>
+                <a onclick="clickLog(&quot;from=PC_login_dsf_wbdj&quot;);" href="httpnchpassport" class="wb-login">
+                    <i>
+
+                    </i>
+                    <span>微博登录</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="login-footer">
+        <span id="footerTip" href="javascript:;">© mzone.com</span>
+        <span>|</span>
+        <a onclick="clickLog(&quot;from= pc_login_ai_click&quot;)" href="ht" target="_blank">联系客服</a>
+        <span>|</span>
+        <a href="http://about.58.com/" target="_blank">帮助</a>
+    </div>
+</div>
+<div id="weixinConBg" class="wx-qrcodebg hide"><span id="close-wx">
+
+    </span>
+</div>
+<div id="weixinCon" class="wx-qrcode hide">
+    <h2>微信登录</h2>
+    <div class="wx-qrcode-img">
+        <span></span>
+        <div class="img-wrap">
+            <img id="wxqrcodeImg" src="login/showqrcode" alt="" width="200" height="200">
+            <div class="qrcode-failbg hide"></div>
+            <div class="qrcode-failtxt hide">
+                <p>二维码已失效</p>
+                <span>刷新</span>
+            </div>
+        </div>
+    </div>
+    <div class="wx-qrcode-txt">
+        <i></i>
+        请使用微信扫一扫
+    </div>
+</div>
+<input type="hidden" name="originsource" id="originsource" value="58-default-pc">
+<input type="hidden" name="goHomeUrl" id="goHomeUrl" value="http://www.58.com">
+<input type="hidden" name="ghid" id="ghid" value="0">
+<script src="login/pcloginNew_v20180920142154.js.下载"></script>
+<div id="SwfStore_ppStore_0" style="position: absolute; top: -2000px; left: -2000px;">
+    <object height="100" width="500" codebase="https://sh.cab" id="SwfStore_ppStore_1"
+            classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+        <param value="//img.58cdn.com.cn/ucenter/my/storage.swf?v=1" name="movie">
+        <param value="namespace=ppStore&amp;policyVer=2" name="FlashVars">
+        <param value="always" name="allowScriptAccess">
+        <embed height="375" align="middle" width="500" pluginspage="//www.macromedia.com/go/getflashplayer"
+               flashvars="namespace=ppStore&amp;policyVer=2" type="application/x-shockwave-flash"
+               allowscriptaccess="always"
+               quality="high" loop="false" play="true" name="SwfStore_ppStore_1" bgcolor="#ffffff"
+               src="//img.58cdn.com.cn/ucenter/my/storage.swf?v=1">
+    </object>
+</div>
+<!--基本统计代码begin-->
+<script type="text/javascript">
+    var _trackURL = "{'cate':'','area':'','pagetype':'PC_login','page':'','version': 'login_B'}";
+</script>
+<!-- 基本统计代码end -->
+
+<script src="login/tracker.sp.min_v20181012113949.js.下载"></script>
+<script>
+    //pc username login pc用户名密码登录
+    setTimeout(function () {
+        var _conf = {
+            clientType: '1',
+            buttonId: ['^btnSubmit_new'],
+            //用户名输入框      //密码输入框      //图片验证码输入框      //下次自动登录输入框
+            inputId: ['^username_new', '^password_new', '^validateCode_new', '$forgetcode_new'],
+            //用户名密码登录提交按钮
+            triggerId: ['^btnSubmit_new']
+        };
+        window.__tracker.init(_conf);
+
+    }, 500);
+</script>
+<script src="login/referrer4.js.下载"></script>
+<div id="addInfo" style="display: none;">
+    <a href="https://tracklog.58.com/detail/pc/shenghuo/38028608896167x.shtml">推荐信息</a>
+</div>
+<script type="text/javascript" src="login/ppt_security.js.下载"></script>
+
+<div id="ads">
+
+</div>
+<object type="application/x-shockwave-flash" data="login/FontList.swf.下载" width="1" height="1" id="trackerFp"
+        style="visibility: visible;">
+    <param name="allowScriptAccess" value="always">
+    <param name="menu" value="false">
+    <param name="flashvars" value="onReady=___fp_swf_loaded">
+</object>
+</body>
+</html>
+

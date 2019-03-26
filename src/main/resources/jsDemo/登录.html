@@ -6,23 +6,49 @@
     <title>用户登录-mzone</title>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
+        var jsq=1;
         function cut() {
-            $("#userPwdLogin").toggle();
+            /*$("#userPwdLogin").toggle();
             $("#scanLoginBox").toggle();
             $("#pwdLogin").toggle();
-            $("#scanCode").toggle();
-            $("#loginBoxTitle").toggle();
-            /* if( $("#scanLoginBox").is(':visible')){
+            $("#scanCode").toggle();*/
 
-             }*/
+            if(jsq%2==1){
+                $("#pwdLogin").attr("class","pwdlogin hide");
+                $("#scanCode").attr("class","scancode");
+                $("#userPwdLogin").attr("class","userpwd-login");
+                $("#scanLoginTitle").attr("class","scanLoginTitle hide");
+                $("#thirdLogin").attr("class","third-login clear");
+                $("#scanLoginBox").attr("class","hide");
+                $("#scanLoginTitle").attr("class","scanLoginTitle hide");
+                $("#scanLogin").attr("class","scan-login hide");
+                $("#loginBoxTitle").attr("class","clear login-box-title");
+                $("#mobileCodeLogin").attr("class","mobilecode-login");
+            }else{
+                $("#pwdLogin").attr("class","pwdlogin");
+                $("#scanCode").attr("class","scancode hide");
+                $("#loginBoxTitle").attr("class","clear login-box-title hide");
+
+                $("#scanLoginTitle").attr("class","scanLoginTitle");
+                $("#thirdLogin").attr("class","third-login clear hide");
+                $("#scanLoginBox").attr("class","");
+                $("#scanLoginTitle").attr("class","scanLoginTitle");
+                $("#scanLogin").attr("class","scan-login");
+                $("#lisheep1").attr("class", "active");
+                $("#lisheep2").attr("class", "");
+                $("#userPwdLogin").attr("class","userpwd-login");
+                $("#userPwdLogin").attr("class","userpwd-login hide");
+            }
+            $("#mobileCodeLogin").attr("class","mobilecode-login hide");
+            jsq++;
         }
 
         function sheep1() {
 
             $("#lisheep1").attr("class", "active");
             $("#lisheep2").attr("class", "");
-            $("#userPwdLogin").show();
-            $("#mobileCodeLogin").hide();
+            $("#userPwdLogin").attr("class","userpwd-login");
+            $("#mobileCodeLogin").attr("class","mobilecode-login hide");
             /* $("#userPwdLogin").attr("class","userpwd-login");
              $("#mobileCodeLogin").attr("class","mobilecode-login hide");*/
         }
@@ -31,8 +57,8 @@
 
             $("#lisheep1").attr("class", "");
             $("#lisheep2").attr("class", "active");
-            $("#userPwdLogin").hide();
-            $("#mobileCodeLogin").show();
+            $("#userPwdLogin").attr("class","userpwd-login hide");
+            $("#mobileCodeLogin").attr("class","mobilecode-login");
             /* $("#userPwdLogin").attr("class","userpwd-login hide");
              $("#mobileCodeLogin").attr("class","mobilecode-login");*/
         }
@@ -374,7 +400,7 @@
         <span>|</span>
         <a onclick="clickLog(&quot;from= pc_login_ai_click&quot;)" href="ht" target="_blank">联系客服</a>
         <span>|</span>
-        <a href="http://about.58.com/" target="_blank">帮助</a>
+        <a href="http://about.mzone.com/" target="_blank">帮助</a>
     </div>
 </div>
 <div id="weixinConBg" class="wx-qrcodebg hide"><span id="close-wx">

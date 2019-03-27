@@ -1,9 +1,8 @@
 package com.song.controller;
 
-import com.song.Exception.StandardRuntimeException;
 import com.song.entity.User;
+import com.song.entity.UserVO;
 import com.song.service.UserService;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -21,11 +21,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/index",produces = "text/html;charset=utf-8")
+    @RequestMapping(value = "/index", produces = "text/html;charset=utf-8")
     public String index() {
         return "user/index";
     }
-    @RequestMapping(value = "/login",produces = "text/html;charset=utf-8")
+
+    @RequestMapping(value = "/login", produces = "text/html;charset=utf-8")
     public String login() {
         return "user/login";
     }
@@ -37,21 +38,12 @@ public class UserController {
             return user.getId() + "/" + user.getName() + "/" + user.getPassword();
         } else return "null";
     }
-
     @RequestMapping(value = "/findAll")
     @ResponseBody
     public List<User> findAll() {
         List<User> list = userService.findAll();
         return list;
     }
-
-    @RequestMapping(value = "/hello")
-    @ResponseBody
-    public String hello() {
-
-        return "hello";
-    }
-
     @RequestMapping(value = "/regist", produces = "application/json;charset=utf-8")
     @ResponseBody
     public String regist(@RequestBody User user) {
@@ -61,27 +53,32 @@ public class UserController {
         } else {
             return "昵称重复";
         }
-
     }
-
-    @RequestMapping(value = "/login",produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/login_handler", produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String login(@RequestBody User user) {
-        String strReturn = "";
+    public UserVO login(User user, HttpSession session) {
         String name = user.getName();
+        UserVO vo = new UserVO();
         User userRes = userService.findUserByName(name);
         if (ObjectUtils.isEmpty(userRes)) {
-            strReturn = "用户不存在";
+            vo.setResponseCode("400");
+            vo.setErrorMsg("用户名找不到");
         } else {
             String password = user.getPassword();
-            if (StringUtils.isBlank(password)) {
-                throw new StandardRuntimeException("密码错误");
-            }
             if (password.equals(userRes.getPassword())) {
-                strReturn = "欢迎登陆";
+                session.setAttribute("username", name);
+                vo.setResponseCode("200");
+            } else {
+                vo.setResponseCode("400");
+                vo.setErrorMsg("密码错误");
             }
         }
+        return vo;
+    }
+    @RequestMapping(value = "/mzone" ,produces = "text/html;charset=utf-8")
+    public String mzone(){
 
-        return strReturn;
+        System.out.println();
+        return "user/mzone";
     }
 }

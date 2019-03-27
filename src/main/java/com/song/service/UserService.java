@@ -15,6 +15,7 @@ public class UserService {
 
     public User findUserByName(String name){
         User user = null;
+        System.out.println("name"+name);
         try{
             user = userRepository.findByUserName(name);
         }catch (Exception e){}

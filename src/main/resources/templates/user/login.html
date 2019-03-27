@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8"/>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../static/scripts/test.js"></script>
+    <script src="/static/script/test.js"></script>
     <title>Title</title>
     <style>
         /* 让页面所有元素的padding和margin都设置为0 */
         *{margin:0;padding:0;box-sizing:border-box;}
         /* 设置背景图，字体设置为微软雅黑 */
-        body{background:url(bg.jpg);font-family: "微软雅黑", sans-serif;}
+       /* body{background:url(bg.jpg);font-family: "微软雅黑", sans-serif;}*/
         /* 引用图片高度设置为28px，就是页面最上方像屋檐一样的黑色图 */
-        .headtop{background:url(topbg.jpg);height:28px;}
+        /*.headtop{background:url(topbg.jpg);height:28px;}*/
         /* 整个登录框的css，并使用绝对定位居中 */
         .login {
             position: absolute;
@@ -44,17 +44,42 @@
             cursor:pointer;
         }
     </style>
+    <script>
+        function login1(){
+            var form = new FormData();
+            var name=$("#name").val();
+            var password=$("#password").val();
+            console.log(name+","+password);
+            form.append("name",name);
+            form.append("password",password);
+            $.ajax({
+                url:"login_handler",
+                type:"post",
+                DateType:"json",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    console.log(data);
+                    if(data.responseCode=="200"){
+                        window.location.href="mzone.html";
+                    }else{
+                        alert(data.errorMsg);
+                    }
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
-<img src="//img.58cdn.com.cn/ui6/my/images/reg-bg.png" alt="" width="100%" height="100%" class="bg-img" style=";">
+<img src="//img.58cdn.com.cn/ui6/my/images/reg-bg.png" alt="" width="100%" height="100%" class="bg-img" style=";"/>
 <div class="login">
-
     <h1>Login</h1>
-    <form action="login" method="post">
-        <input type="text" name="user" placeholder="用户名" required="required"/>
-        <input type="password" name="password" placeholder="密  码" required="required"/>
-        <button type="submit">登录</button>
+    <form action="login_handler" method="post" id="from1" >
+        <input type="text" id="name" name="name" placeholder="用户名" required="required"/>
+        <input type="password" id="password" name="password" placeholder="密  码" required="required"/>
+        <input type="button" onclick="login1();" value="登录"/>
     </form>
 </div>
 

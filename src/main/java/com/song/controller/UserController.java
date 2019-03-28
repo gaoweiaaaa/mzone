@@ -1,7 +1,7 @@
 package com.song.controller;
 
-import com.song.entity.User;
 import com.song.entity.UserVO;
+import com.song.entity.User;
 import com.song.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,26 +10,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
-
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
+    //测试类
     @RequestMapping(value = "/index", produces = "text/html;charset=utf-8")
     public String index() {
         return "user/index";
     }
 
+    //显示登录页面
     @RequestMapping(value = "/login", produces = "text/html;charset=utf-8")
     public String login() {
         return "user/login";
     }
+
+    //TODO
     @RequestMapping(value = "/show")
     @ResponseBody
     public String show(@RequestParam(value = "name", required = false) String name) {
@@ -38,6 +39,7 @@ public class UserController {
             return user.getId() + "/" + user.getName() + "/" + user.getPassword();
         } else return "null";
     }
+
     @RequestMapping(value = "/findAll")
     @ResponseBody
     public List<User> findAll() {
@@ -75,10 +77,12 @@ public class UserController {
         }
         return vo;
     }
-    @RequestMapping(value = "/mzone" ,produces = "text/html;charset=utf-8")
-    public String mzone(){
-
-        System.out.println();
+    @RequestMapping(value = "/mzone", produces = "text/html;charset=utf-8")
+    public String mzone() {
         return "user/mzone";
+    }
+    @RequestMapping(value = "/reg", produces = "text/html;charset=utf-8")
+    public String reg() {
+        return "user/reg";
     }
 }

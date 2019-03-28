@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!-- saved from url=(0229)https://passport.58.com/reg/?path=https%3A//yinchuan.58.com/%3Futm_source%3Dmarket%26spm%3Du-2d2yxv86y3v43nkddh1.BDPCPZ_BT&utm_source=market&spm=u-2d2yxv86y3v43nkddh1.BDPCPZ_BT&PGTID=0d100000-0080-6fa1-9607-46dd5623d33c&ClickID=3 -->
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>注册会员-mzone</title>
+    <script src="/static/reg/jquery-1.8.3.js.下载"></script>
+    <script src="/static/reg/ppt_security.js.下载"></script>
+    <script src="/static/reg/placeholders.min.js.下载"></script>
+    <link rel="Shortcut Icon" href="https://img.58cdn.com.cn/n/tuan/v3/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/reg/mobile_reg_v20171123144136.css">
+    <script src="/static/reg/index.min_v20180104173508.js.下载"></script>
+    <script>
+        var passport_whitelist = ['mzone.com.cn'];
+        try {
+            var monitor = window.FeMonitor.getInstance({
+                projectID: 'passport_reg',
+                //reportUrl: '',
+                whitelist: passport_whitelist
+            });
+            monitor.init();
+        } catch (e) {
+        }
+        function reg() {
+            var form = new FormData();
+            var name=$("#regMobileUsername").val();
+            var password=$("#regPasswordText").val();
+            var repassword=$("#regRepasswordText").val();
+            var nickname=$("#regNickNameText").val();
+            var tel=$("#regTelText").val();
+            var code=$("#regMobileCode").val();
+            console.log(name+","+password);
+            form.append("name",name);
+            form.append("password",password);
+            $.ajax({
+                url:"login_handler",
+                type:"post",
+                DateType:"json",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    console.log(data);
+                    if(data.responseCode=="200"){
+                        alert("登录成功");
+                    }else{
+                        windows.location.href="mzone";
+                    }
+                }
+            });
+        }
+    </script>
+    <script src="/static/reg/pc_reg_v20181108190752.js.下载" type="text/javascript"></script>
+    <script src="/static/reg/ppstore_v20161102144259.js.下载" type="text/javascript"></script>
+    <script src="/static/reg/ppfingerprint_v20181217162217.js.下载" type="text/javascript"></script>
+    <script src="/static/reg/isd_captcha_v20190322190239.js.下载" type="text/javascript"></script>
+    <script src="/static/reg/tracker.sp.min_v20181012113949.js.下载" type="text/javascript"></script>
+    <style id="tsbrowser_video_independent_player_style" type="text/css">
+        [tsbrowser_force_max_size] {
+            width: 100% !important;
+            height: 100% !important;
+            left: 0px !important;
+            top: 0px !important;
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+
+        [tsbrowser_force_fixed] {
+            position: fixed !important;
+            z-index: 9999 !important;
+            background: black !important;
+        }
+
+        [tsbrowser_force_hidden] {
+            opacity: 0 !important;
+            z-index: 0 !important;
+        }
+
+        [tsbrowser_hide_scrollbar] {
+            overflow: hidden !important;
+        }</style>
+    <script type="text/javascript" src="/static/reg/swfobject.js.下载"></script>
+    <script type="text/javascript" src="/static/reg/sha1.js.下载"></script>
+    <script type="text/javascript" src="/static/reg/finger.sp.min.js.下载"></script>
+</head>
+<body>
+<img src="/static/reg/reg-bg.png" alt="" width="100%" height="100%" style="z-index:-1;
+    position:fixed;_position:absolute;left:0;right:0;bottom:0;
+    top:0;_left:expression(eval(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)-(parseInt(this.currentStyle.marginLeft,10)||0)-(parseInt(this.currentStyle.marginRight,10)||0));_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));">
+<div id="overlay"></div>
+<div id="regContent">
+    <div id="outregBox">
+        <div id="backtoindex">
+            <a href="mzone.html/">返回首页</a>
+        </div>
+        <div id="goLogin">
+            已有账户？<a href="login.html">去登录</a>
+        </div>
+    </div>
+    <div class="wrap">
+        <!-- <div id="regLogo" class="regLogo regLogo58">
+             <a id="logoHref" href="http://mzone.com/"></a>
+         </div>-->
+        <div id="regBox" class="regBox">
+            <ul id="regUl" class="regUl">
+                <input type="hidden" name="source" id="sourceReg" value="passport">
+                <input type="hidden" name="token" id="tokenReg" value="32ya2kWHoopvMjvT7LV8ofUkQNzvmwJE">
+                <input type="hidden" name="tokencode" id="tokencodeReg" value="$tokencode">
+                <input type="hidden" name="codetype" id="codetypeReg" value="13">
+                <input type="hidden" name="targeturl" id="targeturlReg"
+                       value="https://yinchuan.58.com/?utm_source=market">
+                <input type="hidden" name="voicetype" id="voicetypeReg" value="0">
+                <input type="hidden" name="validcode" id="validcodeReg" value="">
+                <input type="hidden" name="rsaExponent" id="rsaExponentReg" value="010001">
+                <input type="hidden" name="rsaModulus" id="rsaModulusReg"
+                       value="0140db74cb69f">
+                <input type="hidden" name="totalTime" id="totalTimeReg" value="0">
+                <input type="hidden" name="remainTime" id="remainTimeReg" value="0">
+                <input type="hidden" name="vcodekey" id="vcodekeyReg" value="">
+                <input type="hidden" name="vcodekeyvoice" id="vcodekeyVoiceReg" value="">
+                <input type="hidden" name="callback" id="callbackReg" value="">
+
+                <input type="hidden" name="callback" id="scid" value="">
+                <input type="hidden" name="callback" id="scsuccesstoken" value="">
+                <input type="hidden" name="callback" id="sctoken" value="">
+
+
+                <!--username-->
+                <li id="regMobileUsernameLi" class="regLi regMobileUsernameLi">
+                    <span class="regLable">用户名</span>
+                    <input type="text" placeholder="用户名" id="regMobileUsername" class="regMobileUsername regInput"
+                           maxlength="20" autocomplete="off">
+                </li>
+
+                <li id="regMobileUsernameTip" class="regMobileUsernameTip regMobileUsernameTipClear regTip">
+                    <span id="regMobileUsernameTipText" class="regTipText"></span>
+                </li>
+
+
+                <!--设置密码-->
+                <li id="regPasswordLi" class="regLi">
+                    <span class="regLable">设置密码</span>
+                    <input type="password" placeholder="设置密码" maxlength="16" autocomplete="off" style="display: none">
+                    <input type="password" placeholder="设置密码" maxlength="16" autocomplete="off" style="display: none">
+                    <input type="text" placeholder="设置密码" id="regPasswordText" class="regPassword regInput"
+                           maxlength="16" autocomplete="off">
+                    <input type="password" placeholder="设置密码" id="regPassword"
+                           class="regPassword regInput" maxlength="16" autocomplete="off" style="display: none">
+                </li>
+                <!--确认密码-->
+                <li id="regRepasspordLi" class="regLi">
+                    <span class="regLable">确认密码</span>
+                    <input type="text" placeholder="确认密码" id="regRepasswordText"
+                           class="regRepassword regInput" maxlength="16" autocomplete="off">
+                    <input type="password" placeholder="确认密码" id="regRepassword"
+                           class="regRepassword regInput" maxlength="16" autocomplete="off" style="display: none">
+                </li>
+                <li id="regRepasswordTip" class="regRepasswordTip regRepasswordTipClear regTip">
+                    <span id="regRepasswordTipText" class="regTipText"></span>
+                </li>
+                <!--设置昵称-->
+                <li id="regNickNameLi" class="regLi">
+                    <span class="regLable">设置昵称</span>
+                    <input type="text" placeholder="昵称" maxlength="16" autocomplete="off" style="display: none">
+                    <input type="text" placeholder="昵称" maxlength="16" autocomplete="off" style="display: none">
+                    <input type="text" placeholder="昵称" id="regNickNameText" class="regPassword regInput"
+                           maxlength="16" autocomplete="off">
+                    <input type="text" placeholder="昵称" id="regNikName"
+                           class="regPassword regInput" maxlength="16" autocomplete="off" style="display: none">
+                </li>
+                <!--设置电话-->
+                <li id="regTelLi" class="regLi">
+                    <span class="regLable">设置TEL</span>
+                    <input type="text" placeholder="TEL" maxlength="16" autocomplete="off" style="display: none">
+                    <input type="text" placeholder="TEL" maxlength="16" autocomplete="off" style="display: none">
+                    <input type="text" placeholder="TEL" id="regTelText" class="regPassword regInput"
+                           maxlength="16" autocomplete="off">
+                    <input type="text" placeholder="TEL" id="regTel"
+                           class="regPassword regInput" maxlength="16" autocomplete="off" style="display: none">
+                </li>
+                <!--设置头像-->
+               <!-- <li id="regIconLi" class="regLi">
+                    <span class="regLable">设置头像</span>
+                    <input type="file" placeholder="icon" style="display: none">
+                    <input type="file" placeholder="icon"style="display: none">
+                    <input type="file" placeholder="icon" id="regIconText" class="regPassword regInput"
+                           maxlength="16" autocomplete="off">
+                    <input type="file" placeholder="icon" id="regIcon"
+                           class="regPassword regInput" maxlength="16" autocomplete="off" style="display: none">
+                </li>-->
+                <!--手机号-->
+                <li id="regMobileLi" class="regLi regMobile">
+                    <span class="regLable">手机号</span>
+                    <!--<input type="text" placeholder="手机号" name="mobile" id="regMobile" class="regMobile regInput"
+                           maxlength="11"
+                           autocomplete="off">-->
+                    <img src="/static/login/reg-bg">
+                    <input type="button" id="regGetcodeBtn" class="regGetcodeBtn" value="换一张">
+                </li>
+                <li id="regMobileTip" class="regMobileTip regMobileTipClear regTip">
+                    <span id="regMobileTipText" class="regTipText"></span>
+                    <span id="regVoicecodeTip" class="regVoicecodeTip">
+        <span>动态码收不到?</span>
+        <input type="button" id="regVoicecodeBtn" class="regVoicecodeBtn" value="使用语音验证">
+        </span>
+                </li>
+
+                <!--短信验证码-->
+                <li id="regMobileCodeLi" class="regLi regMobileCodeLi">
+                    <span class="regLable">动态码</span>
+                    <input type="text" placeholder="动态码" id="regMobileCode" class="regMobileCode regInput" maxlength="6"
+                           autocomplete="off">
+                </li>
+                <li id="regMobileCodeTip" class="regMobileCodeTip regMobileCodeTipClear regTip">
+                    <span id="regMobileCodeTipText" class="regTipText"></span>
+                    <span id="regMobileSure" class="regMobileSure">该手机号已注册，
+               	<span id="regLoginBtn" class="regLoginBtn">立即登录</span>&nbsp;或&nbsp;
+                <span id="regContinue" class="regContinue">继续注册</span>
+            </span>
+                    <span id="regMobileSureOnlyLogin" class="regMobileSure">该手机号已注册，
+                <span id="regLoginBtnOnlyLogin" class="regLoginBtn">立即登录</span>
+            </span>
+                </li>
+                <!--登录按钮-->
+                <li id="regButtonLi" class="regButtonLi regLi">
+                    <div class="regButtonBox">
+                        <input type="button" value="注册" id="regButton" class="regButton">
+                    </div>
+                </li>
+
+            </ul>
+            <div id="regValidcodeBox" class="regValidcodeBox" style="display: none">
+                <div id="regValidcodeTipTextBox">
+                    <span id="regValidcodeTipText" class="regValidcodeTipText regTipText">请输入图片验证码</span>
+
+                </div>
+                <div id="regValidcodeInputBox" class="regValidcodeInputBox">
+                    <input type="text" placeholder="图片验证码" id="regValidcode" class="regValidcode regInput"
+                           maxlength="11" autocomplete="off">
+                    <img id="regValidImg" class="" src="">
+                </div>
+                <div id="regValidcodeBtnbox" class="regValidcodeBtnbox">
+                    <input type="button" value="确定" id="regValidcodeImgBtn" class="regValidcodeBtn" autocomplete="off">
+
+
+                </div>
+                <div id="regVoiceValidcodeBtnbox" class="regValidcodeBtnbox" style="display: none">
+                    <input type="button" value="确定" id="regVoiceValidcodeImgBtn" class="regValidcodeBtn"
+                           autocomplete="off">
+                </div>
+                <div id="regValidcodeClose" class="regValidcodeClose"></div>
+            </div>
+            <div id="regValidcodeBg" class="regValidcodeBg" style="display: none"></div>
+            <div id="ISDCaptcha"></div>
+        </div>
+    </div>
+    <div class="login-footer">
+        <span id="footerTip" href="javascript:;">© mzone.com</span><span>|</span>
+        <a href="" target="_blank" onclick="">联系客服</a><span>|</span>
+        <a href="https://baidu.html" target="_blank">帮助</a>
+    </div>
+</div>
+<!--基本统计代码begin-->
+<script type="text/javascript">
+    var _trackURL = "{'cate':'','area':'','pagetype':'PC_regist_sj','page':''}";
+</script>
+<script src="/static/reg/referrer4.js.下载">
+
+</script>
+<div id="addInfo" style="display: none;">
+    <a href="hbaidu">推荐信息</a>
+</div>
+<!--基本统计代码end-->
+
+<script>
+    window.onload = function () {
+        $(".regLable").html("");
+    }
+</script>
+
+<div id="SwfStore_ppStore_0" style="position: absolute; top: -2000px; left: -2000px;">
+    <object height="100" width="500" codebase="h.cab" id="SwfStore_ppStore_1"
+            classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+        <param value="//img.58cdn.com.cn/ucenter/my/storage.swf?v=1" name="movie">
+        <param value="namespace=ppStore&amp;policyVer=2" name="FlashVars">
+        <param value="always" name="allowScriptAccess">
+        <embed height="375" align="middle" width="500" pluginspage="//www.macromedia.com/go/getflashplayer"
+               flashvars="namespace=ppStore&amp;policyVer=2" type="application/x-shockwave-flash"
+               allowscriptaccess="always" quality="high" loop="false" play="true" name="SwfStore_ppStore_1"
+               bgcolor="#ffffff" src="//img.58cdn.com.cn/ucenter/my/storage.swf?v=1">
+    </object>
+</div>
+<div id="ads">
+
+</div>
+<object type="application/x-shockwave-flash" data="/static/reg/FontList.swf.下载"
+        width="1" height="1" id="trackerFp" style="visibility: visible;">
+    <param name="allowScriptAccess" value="always">
+    <param name="menu" value="false">
+    <param name="flashvars" value="onReady=___fp_swf_loaded">
+</object>
+</body>
+</html>
